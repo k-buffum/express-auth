@@ -16,6 +16,22 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+      },
+
+      // You need a callback because it's asyncronus
+      authenticate: function(email, password, callback) {
+        this.find({
+          where: { email: email }
+        }).then(function(user) {
+          // callback 1st argument (null) is an error, second (false) returns there is no user
+          if (!user) return callback(null, false);
+          // compares users password to stored password in db
+          bcrypt.compare(password, user.password, function(err, result) {
+            if (err) return callback(err);
+            // "result ? user : false" terinary function, if true it will return user, if false it will return false
+            callback(null, result ? user : false);
+          });
+        });
       }
     },
 
