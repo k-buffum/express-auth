@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/WDI-SEA/express-auth#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.15.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
