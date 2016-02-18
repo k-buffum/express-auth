@@ -24,10 +24,14 @@ router.post('/signup', function(req, res) {
   	if (created) {
   		res.redirect("/");
   	} else {
-  		res.send("User already exists");
-  	}
+  		// res.send("User already exists");
+  	 req.flash("danger", "User already exists");
+     res.redirect("/");
+    }
   }).catch(function(err) {  // catches errors coming from sequelize
-  	res.send(err);
+  	req.flash("danger", err.message);
+    res.redirect("/");
+    // res.send(err);
   });
 });
 

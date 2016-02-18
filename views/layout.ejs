@@ -17,7 +17,19 @@
     <![endif]-->
   </head>
   <body>
+
+    <% if (typeof alerts !== 'undefined') { %>
+      <% for (key in alerts) { %>
+        <% alerts[key].forEach(function(thisMsg) { %>
+          <div class="alert alert-<%= key %>"><%= thisMsg %></div>
+        <% }); %>
+      <% } %>
+    <% } %>
+
     <div class="container">
+      <div>
+        Current user: <%= currentUser.name %>
+      </div>
       <%- body %>
     </div>
 
